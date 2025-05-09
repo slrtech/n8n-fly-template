@@ -1,0 +1,27 @@
+app = "n8n-template"
+
+primary_region = "gru"
+
+[env]
+N8N_PORT = "5678"
+N8N_PROTOCOL = "http"
+N8N_HOST = "0.0.0.0"
+N8N_API_DISABLE_AUTH = "true"
+N8N_EDITOR_BASE_URL = "http://0.0.0.0:5678"
+WEBHOOK_URL = "http://0.0.0.0:5678"
+
+[[services]]
+  internal_port = 5678
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[mounts]
+  source = "n8n_data"
+  destination = "/home/node/.n8n"
